@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- encoding: utf8 -*-
-'''Program
+'''Input: geo_coordinates_zh.nt.bz2
 '''
 
 import re
