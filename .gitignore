@@ -1,4 +1,7 @@
 .nt.bz2
+solr/conf/string_match/data/
+solr/solr-4.8.0.tgz
+solr/solr-4.8.0/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
