@@ -43,7 +43,7 @@ if sys.argv[1] == 'synonym_string_match':
     for key, val in items.iteritems():
         name = get_name(key)
         if 'redirects' in val:
-            line ='%s => %s\n' % (', '.join([i.replace('_', ' ').replace(',', '\\,') for i in val['redirects']]), name) 
+            line ='%s => %s\n' % (', '.join([i.replace('_', ' ').replace(',', '\\,') for i in val['redirects']]), name.replace(',', '\\,')) 
             results.append(line.encode('utf8'))
 
     with open('../solr/conf/synonym_string_match/conf/synonyms.txt', 'w') as fp:
