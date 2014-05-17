@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- encoding: utf8 -*-
-'''Input: geo_coordinates_zh.nt.bz2
+'''Input: geo_coordinates_en.nt.bz2
 '''
 
 import re
@@ -13,12 +13,12 @@ __author__ = 'noahsark'
 
 
 def get_latlon(string):
-    pat = re.compile('"(.*) (.*)"@zh')
+    pat = re.compile('"(.*) (.*)"@en')
     match = pat.match(string)
     if match is not None:
         return "%lf,%lf" % (float(match.group(1)), float(match.group(2)))
 
-items = json.loads(open('items.json'))
+items = json.load(open('entities.json'))
 for line in fileinput.input():
     pat = re.compile("<([^<>]*)> <([^<>]*)> (.*) .")
     match = pat.match(line)
@@ -29,5 +29,5 @@ for line in fileinput.input():
                 items[uri] = {}
             items[uri]['latlon'] = get_latlon(match.group(3))
 
-with open('items.json', 'w') as fp:
+with open('entities.json', 'w') as fp:
     fp.write(json.dumps(items, indent=4, ensure_ascii=False).encode('utf8'))
