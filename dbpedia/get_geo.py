@@ -19,12 +19,15 @@ def get_latlon(string):
         return "%lf,%lf" % (float(match.group(1)), float(match.group(2)))
 
 items = json.load(open('entities.json'))
+id_list = set(json.load(open('id_list.json')))
 for line in fileinput.input():
     pat = re.compile("<([^<>]*)> <([^<>]*)> (.*) .")
     match = pat.match(line)
     if match is not None:
         if match.group(2) == 'http://www.georss.org/georss/point':
             uri = match.group(1).decode('unicode_escape')
+            if uri not in id_list:
+                continue
             if uri not in items:
                 items[uri] = {}
             items[uri]['latlon'] = get_latlon(match.group(3))
