@@ -244,6 +244,8 @@
 
    <!-- copy name to alphaNameSort, a field designed for sorting by name -->
    <!-- <copyField source="name" dest="alphaNameSort"/> -->
+   <copyField source="name" dest="text"/>
+   <copyField source="abstract" dest="text"/>
  
   
     <!-- field type definitions. The "name" attribute is

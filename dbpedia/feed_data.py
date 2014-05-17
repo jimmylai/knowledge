@@ -55,3 +55,8 @@ if sys.argv[1] == 'geo_search':
     feed_string_match('geo_search',
             lambda key, val: {'id': key, 'name': get_name(key), 'abstract': val['abstract'] if 'abstract' in val else None,
                 'location': val['latlon'] if 'latlon' in val else None})
+
+if sys.argv[1] == 'full_text_search':
+    feed_string_match('full_text_search',
+            lambda key, val: {'id': key, 'name': get_name(key), 'abstract': val['abstract'] if 'abstract' in val else None,
+                'location': val['latlon'] if 'latlon' in val else None})

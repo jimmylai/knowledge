@@ -4,6 +4,7 @@ solr/solr-4.8.0/
 solr/conf/synonym_string_match/data/
 solr/conf/geo_search/data/
 solr/conf/string_match/data/
+solr/conf/full_text_search/data/
 *.swp
 *.json
 
