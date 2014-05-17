@@ -126,7 +126,7 @@
         NOTE: This field is not indexed by default, since it is also copied to "text"
         using copyField below. This is to save space. Use this field for returning and
         highlighting document content. Use the "text" field to search the content. -->
-   <field name="name" type="text_general" indexed="true" stored="true" multiValued="false"/>
+   <field name="name" type="name_text" indexed="true" stored="true" multiValued="false"/>
    <field name="abstract" type="text_general" indexed="false" stored="true" multiValued="false"/>
    
 

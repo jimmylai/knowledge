@@ -18,10 +18,10 @@ if len(sys.argv) < 2:
     sys.exit(0)
 
 
-def feed_string_match(core):
+def feed_string_match(core, extract):
     results = []
     for key, val in items.iteritems():
-        dic = {'id': key, 'name': get_name(key), 'abstract': val['abstract'] if 'abstract' in val else ''}
+        dic = extract(key, val)
         results.append(dic)
 
     fpath = '%s_feed.json' % core
@@ -34,7 +34,8 @@ def feed_string_match(core):
 
 items = json.load(open('items.json'))
 if sys.argv[1] == 'string_match':
-    feed_string_match('string_match')
+    feed_string_match('string_match',
+            lambda key, val: {'id': key, 'name': get_name(key), 'abstract': val['abstract'] if 'abstract' in val else ''})
 
 
 if sys.argv[1] == 'synonym_string_match':
@@ -47,4 +48,10 @@ if sys.argv[1] == 'synonym_string_match':
 
     with open('../solr/conf/synonym_string_match/conf/synonyms.txt', 'w') as fp:
         fp.writelines(results)
-    feed_string_match('synonym_string_match')
+    feed_string_match('synonym_string_match',
+            lambda key, val: {'id': key, 'name': get_name(key), 'abstract': val['abstract'] if 'abstract' in val else ''})
+
+if sys.argv[1] == 'geo_search':
+    feed_string_match('geo_search',
+            lambda key, val: {'id': key, 'name': get_name(key), 'abstract': val['abstract'] if 'abstract' in val else None,
+                'location': val['latlon'] if 'latlon' in val else None})
