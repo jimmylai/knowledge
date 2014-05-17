@@ -11,10 +11,10 @@ __author__ = 'noahsark'
 
 
 def get_name(string):
-    pat = re.compile("http://zh.dbpedia.org/resource/(.*)")
+    pat = re.compile("http://dbpedia.org/resource/(.*)")
     match = pat.match(string)
     if match is not None:
-        return match.group(1)
+        return match.group(1).replace('_', ' ')
 
 def clear_data(core):
     local('curl "http://localhost:8983/solr/%s/update?stream.body=<delete><query>*:*</query></delete>&commit=true"' % core)

@@ -32,7 +32,7 @@ def feed_string_match(core, extract):
     feed_data(core, fpath)
 
 
-items = json.load(open('items.json'))
+items = json.load(open('entities.json'))
 if sys.argv[1] == 'string_match':
     feed_string_match('string_match',
             lambda key, val: {'id': key, 'name': get_name(key), 'abstract': val['abstract'] if 'abstract' in val else ''})
@@ -43,7 +43,7 @@ if sys.argv[1] == 'synonym_string_match':
     for key, val in items.iteritems():
         name = get_name(key)
         if 'redirects' in val:
-            line ='%s => %s\n' % (', '.join(val['redirects']), name) 
+            line ='%s => %s\n' % (', '.join([i.replace('_', ' ').replace(',', '\\,') for i in val['redirects']]), name) 
             results.append(line.encode('utf8'))
 
     with open('../solr/conf/synonym_string_match/conf/synonyms.txt', 'w') as fp:
