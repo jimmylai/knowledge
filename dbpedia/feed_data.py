@@ -18,9 +18,8 @@ if len(sys.argv) < 2:
     sys.exit(0)
 
 
-def feed_string_match():
+def feed_string_match(core):
     results = []
-    core = 'string_match'
     for key, val in items.iteritems():
         dic = {'id': key, 'name': get_name(key), 'abstract': val['abstract'] if 'abstract' in val else ''}
         results.append(dic)
@@ -35,10 +34,10 @@ def feed_string_match():
 
 items = json.load(open('items.json'))
 if sys.argv[1] == 'string_match':
-    feed_string_match()
+    feed_string_match('string_match')
 
 
-if sys.argv[1] == 'synonym_match':
+if sys.argv[1] == 'synonym_string_match':
     results = []
     for key, val in items.iteritems():
         name = get_name(key)
@@ -48,3 +47,4 @@ if sys.argv[1] == 'synonym_match':
 
     with open('../solr/conf/synonym_string_match/conf/synonyms.txt', 'w') as fp:
         fp.writelines(results)
+    feed_string_match('synonym_string_match')

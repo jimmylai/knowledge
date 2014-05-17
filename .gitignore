@@ -2,6 +2,8 @@
 solr/conf/string_match/data/
 solr/solr-4.8.0.tgz
 solr/solr-4.8.0/
+solr/conf/synonym_string_match/data/*
+*.swp
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
